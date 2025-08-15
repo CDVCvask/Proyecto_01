@@ -27,7 +27,8 @@ class Mod_Producto:
                                            'Stock':producto.stock,'Precio':producto.precio}
     def Mostrar(self):
         for codigo, producto in self.productos.items():
-            print(f"Código: {codigo}, Nombre: {producto.categoria}")
+            print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
+                  f" Stock {producto['Stock']} Precio {producto['Precio']}")
 menu = MENU()
 mod = Mod_Producto()
 allow = False
@@ -61,7 +62,7 @@ try:
                                 producto = Producto(codigo,nombre,categoría,stock,precio)
                                 mod.Agregar_producto(producto)
             case "2":
-                pass
+                mod.Mostrar()
             case "3":
                 pass
             case "4":
