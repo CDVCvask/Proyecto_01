@@ -91,7 +91,10 @@ try:
             case "2":
                 mod.Mostrar()
             case "3":
-                pass
+                encontrar = mod.Busqueda()
+                if encontrar == "-2":
+                    print("No hay datos para buscar")
+                    #No pude probar la busqueda al 100 pero yo creo que jala jaja
             case "4":
                 pass
             case "5":
