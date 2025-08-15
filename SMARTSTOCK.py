@@ -88,6 +88,7 @@ try:
                                 codigo = f"P{cont}"
                                 producto = Producto(codigo,nombre,categoría,stock,precio)
                                 mod.Agregar_producto(producto)
+                                cont = cont + 1
             case "2":
                 mod.Mostrar()
             case "3":
