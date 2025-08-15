@@ -29,6 +29,33 @@ class Mod_Producto:
         for codigo, producto in self.productos.items():
             print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
                   f" Stock {producto['Stock']} Precio {producto['Precio']}")
+    def Busqueda(self):
+        encontrar = "-2"
+        cont = 0
+        cont1 = 0
+        if len(self.productos) < 1:
+            return "-1"
+        else:
+            buscar = input("ingrese el código/nombre/categoria del producto que busca: ")
+            for codigo, producto in self.productos.items():
+                if buscar == producto.codigo:
+                    encontrar = producto.codigo
+                    return encontrar
+            for codigo, producto in self.productos.items():
+                if buscar.lower() == producto['Categoria'].lower():
+                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
+                          f" Stock {producto['Stock']} Precio {producto['Precio']}")
+                    cont = cont + 1
+            print(f"Se han encontrado {cont} coincidencias en categoría")
+            print(" ")
+            for codigo, producto in self.productos.items():
+                if buscar.lower() == producto['Nombre'].lower():
+                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
+                          f" Stock {producto['Stock']} Precio {producto['Precio']}")
+                    cont1 = cont1 + 1
+            print(f"Se han encontrado {cont1} coincidencias en nombre")
+            encontrar = "-1"
+            return encontrar
 menu = MENU()
 mod = Mod_Producto()
 allow = False
