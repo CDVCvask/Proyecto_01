@@ -12,3 +12,4 @@ class MENU:
         print("1.Por nombre")
         print("2.Por stock")
         print("3.Por precio")
+menu = MENU()
