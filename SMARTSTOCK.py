@@ -69,7 +69,7 @@ class Administracion_productos:
     def Eliminar(self):
         print("Eliminar productos en su totalidad")
         codigo = input("\nIngrese el codigo del producto que desea eliminar: ")
-        if codigo in self.mod.productos[codigo]:
+        if codigo in self.mod.productos:
             print("Producto encontrado exitosamente")
             print("Eliminando producto...")
             del self.mod.productos[codigo]
@@ -77,7 +77,7 @@ class Administracion_productos:
         else:
             print("El codigo ingresado no pertenece a ningún producto")
     def Vender(self):
-        codigo = iput("\nIngrese el codigo del producto que desea vender: ")
+        codigo = input("\nIngrese el codigo del producto que desea vender: ")
         if codigo in self.mod.productos:
             print("Producto encontrado exitosamente")
             cantidad=int(input("\nIngrese la cantidad de productos que desea vender:"))
@@ -99,7 +99,7 @@ class Administracion_productos:
             if precio_nuevo <= 0:
                 print("Precio invalido")
             else:
-                self.mod.productos[codigo]["precio"]=nuevo_precio
+                self.mod.productos[codigo]["Precio"]=precio_nuevo
                 print("Precio actualizado")
                 print(f"Ahora su precio sera de {nuevo_precio}")
         else:
@@ -147,12 +147,12 @@ try:
                     print("No hay datos para buscar")
                     #No pude probar la busqueda al 100 pero yo creo que jala jaja
             case "4":
-                while true:
+                while True:
                     #aun falta la suma de los productos vendidos
                     #falta correcion de errores
                     menu.Administracion_Menu()
                     opcion=input("Elija la opcion que desee: ")
-                    if opcion in [1,2,3,4]:
+                    if opcion in ["1", "2", "3", "4"]:
                         match opcion:
                             case "1":
                                 admin.Vender()
