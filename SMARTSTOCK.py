@@ -62,6 +62,19 @@ class Mod_Producto:
             encontrar = "-1"
             return encontrar
 class Administracion_productos:
+    def __init__(self, mod_productos):
+        self.mod = mod_productos
+
+    def Eliminar(self):
+        codigo = iput("Ingrese el codigo del producto")
+        if codigo in self.mod.productos[codigo]:
+            eleccion=int(input("Producto encontrado, eliminando producto..."))
+            del self.mod.productos[codigo]
+            print("Producto eliminado exitosamente")
+        else:
+            print("El codigo ingresado no pertenece a ningún producto")
+
+
     def vender(self):
         pass
 menu = MENU()
