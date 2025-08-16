@@ -39,6 +39,8 @@ class Mod_Producto:
             buscar = input("ingrese el código/nombre/categoria del producto que busca: ")
             for codigo, producto in self.productos.items():
                 if buscar == codigo:
+                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
+                          f" Stock {producto['Stock']} Precio {producto['Precio']}")
                     encontrar = codigo
                     return encontrar
             for codigo, producto in self.productos.items():
