@@ -66,17 +66,29 @@ class Administracion_productos:
         self.mod = mod_productos
 
     def Eliminar(self):
-        codigo = iput("Ingrese el codigo del producto")
+        codigo = iput("\nIngrese el codigo del producto que desea eliminar: ")
         if codigo in self.mod.productos[codigo]:
             eleccion=int(input("Producto encontrado, eliminando producto..."))
             del self.mod.productos[codigo]
-            print("Producto eliminado exitosamente")
+            print("\nProducto eliminado exitosamente")
+        else:
+            print("El codigo ingresado no pertenece a ningún producto")
+    def vender(self):
+        codigo = iput("\nIngrese el codigo del producto que desea vender: ")
+        if codigo in self.mod.productos:
+            print("Producto encontrado exitosamente")
+            cantidad=int(input("\nIngrese la cantidad de productos que desea vender:"))
+            if cantidad <=0:
+                print("Cantidad invalida")
+            elif cantidad>self.mod.productos[codigo]['Stock']:
+                print("No hay suficientes productos para realizar la venta")
+            else:
+                self.mod.productos[codigo]['Stock'] -= cantidad
+                print("Venta realizada exitosamente")
+                print(f"Nueva cantidad de productos disponibles: {self.mod.productos[codigo]['Stock']}")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
 
-
-    def vender(self):
-        pass
 menu = MENU()
 mod = Mod_Producto()
 allow = False
