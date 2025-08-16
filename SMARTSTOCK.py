@@ -17,6 +17,7 @@ class MENU:
         print("1.Vender productos")
         print("2.Cambiar precios")
         print("3.Eliminar productos")
+        print("4.Volver al menú principal")
 class Producto:
     def __init__(self, codigo,nombre,categoria, stock, precio):
         self.codigo = codigo
@@ -66,14 +67,16 @@ class Administracion_productos:
         self.mod = mod_productos
 
     def Eliminar(self):
-        codigo = iput("\nIngrese el codigo del producto que desea eliminar: ")
+        print("Eliminar productos en su totalidad")
+        codigo = input("\nIngrese el codigo del producto que desea eliminar: ")
         if codigo in self.mod.productos[codigo]:
-            eleccion=int(input("Producto encontrado, eliminando producto..."))
+            print("Producto encontrado exitosamente")
+            print("Eliminando producto...")
             del self.mod.productos[codigo]
             print("\nProducto eliminado exitosamente")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
-    def vender(self):
+    def Vender(self):
         codigo = iput("\nIngrese el codigo del producto que desea vender: ")
         if codigo in self.mod.productos:
             print("Producto encontrado exitosamente")
@@ -88,9 +91,23 @@ class Administracion_productos:
                 print(f"Nueva cantidad de productos disponibles: {self.mod.productos[codigo]['Stock']}")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
+    def CambiarPrecios(self):
+        codigo = input("Ingrese el codigo del producto al cual se le cambiara el precio: ")
+        if codigo in self.mod.productos:
+            print("")
+            precio_nuevo= int(input("\nIngrese el nuevo precio"))
+            if precio_nuevo <= 0:
+                print("Precio invalido")
+            else:
+                self.mod.productos[codigo]["precio"]=nuevo_precio
+                print("Precio actualizado")
+                print(f"Ahora su precio sera de {nuevo_precio}")
+        else:
+            print("El codigo ingresado no pertenece a ningún producto")
 
 menu = MENU()
 mod = Mod_Producto()
+admin = Administracion_productos(mod)
 allow = False
 try:
     while allow == False:
@@ -130,9 +147,26 @@ try:
                     print("No hay datos para buscar")
                     #No pude probar la busqueda al 100 pero yo creo que jala jaja
             case "4":
-                pass
+                while true:
+                    #aun falta la suma de los productos vendidos
+                    #falta correcion de errores
+                    menu.Administracion_Menu()
+                    opcion=input("Elija la opcion que desee: ")
+                    if opcion in [1,2,3,4]:
+                        match opcion:
+                            case "1":
+                                admin.Vender()
+                            case "2":
+                                admin.CambiarPrecios()
+                            case "3":
+                                admin.Eliminar()
+                            case "4":
+                                break
+                    else:
+                        print("Opcion invalida")
             case "5":
-                pass
+                print("Saliendo del Menú")
+                allow = True
             case _:
                 print("La opción seleccionada no es valida")
 except ValueError:
