@@ -13,7 +13,6 @@ class MENU:
         print("3.Por precio")
         print("4.Volver al menú principal")
     def Administracion_Menu(self):
-        print("\nAdministracion de productos")
         print("1.Vender productos")
         print("2.Cambiar precios")
         print("3.Eliminar productos")
@@ -160,6 +159,7 @@ class Administracion_productos:
             print("Eliminando producto...")
             del self.mod.productos[codigo]
             print("\nProducto eliminado exitosamente")
+            input("Preione Enter para continuar")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
     def Vender(self):
@@ -181,19 +181,21 @@ class Administracion_productos:
                 print(f"Nueva cantidad de productos disponibles: {self.mod.productos[codigo]['Stock']}")
                 print(f"Ganancia de esta venta: {total_venta}")
                 print(f"Ganancia acumulada: {self.ganancias}")
+                input("Preione Enter para continuar")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
     def CambiarPrecios(self):
         codigo = input("Ingrese el codigo del producto al cual se le cambiara el precio: ")
         if codigo in self.mod.productos:
             print("")
-            precio_nuevo= int(input("\nIngrese el nuevo precio"))
+            precio_nuevo= int(input("\nIngrese el nuevo precio: "))
             if precio_nuevo <= 0:
                 print("Precio invalido")
             else:
                 self.mod.productos[codigo]["Precio"]=precio_nuevo
                 print("Precio actualizado")
-                print(f"Ahora su precio sera de {nuevo_precio}")
+                print(f"Ahora su precio sera de {precio_nuevo}")
+                input("Preione Enter para continuar")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
 
@@ -209,9 +211,9 @@ try:
             case "1":
                 #Ahora solo voy a hacer el ingreso imaginando que todo está bien y cuando ya funcione
                 # le agregamos lo de que no permita dejar espacios vacios y así
-                print("Registro de productos")
+                print("\nREGISTRO DE PRODUCTOS")
                 cont = 0
-                num = int(input("\nCuantos productos desea ingresar (Use unicamente números enteros): ? "))
+                num = int(input("Cuantos productos desea ingresar (Use unicamente números enteros): ? "))
                 if num < 1 or num > 10:
                     print("La cantidad ingresada no es valida")
                 else:
@@ -237,7 +239,7 @@ try:
                     input("Preione Enter para continuar")
             case "2":
                 while True:
-                    print("Productos disponibles")
+                    print("\nPRODUCTOS DISPONIBLES")
                     menu.Q_S_Menu()
                     opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
                     if opt1 in ["1", "2","3","4"]:
@@ -270,7 +272,7 @@ try:
                     else:
                         print("Opcion invalida")
             case "3":
-                print("Busqueda de productos")
+                print("\nBUSQUEDA DE PRODUCTOS")
                 encontrar = mod.Busqueda()
                 if encontrar == "-2":
                     print("No hay datos para buscar")
@@ -281,6 +283,7 @@ try:
                 while True:
                     #aun falta la suma de los productos vendidos
                     #falta correcion de errores
+                    print("\nADMINISTRACION DE PRODUCTOS")
                     mod.Mostrar()
                     menu.Administracion_Menu()
                     opcion=input("Elija la opcion que desee (Use unicamente números enteros): ")
@@ -294,7 +297,8 @@ try:
                                 admin.Eliminar()
                             case "4":
                                print(f"Ganancias acumuladas: {admin.ganancias}")
-                            case 5:
+                               input("Preione Enter para continuar")
+                            case "5":
                                 print("Voliendo al menú principal...")
                                 input("Preione Enter para continuar")
                                 break
