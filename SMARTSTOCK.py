@@ -106,6 +106,30 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                  'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Stock(upper), **same, **self.Q_S_Stock(lower)}
+    def Q_S_Precio(self,productos = None):
+        if productos == None:
+            productos = self.productos
+        piv = ""
+        lower = {}
+        same = {}
+        upper = {}
+        if len(productos) <= 1:
+            return productos
+        else:
+            for key, value in productos.items():
+                piv = value['Precio']
+                break
+            for key, value in productos.items():
+                if value['Precio'] < piv:
+                    lower[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Precio'] == piv:
+                    same[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Precio'] > piv:
+                    upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                 'Stock': value['Stock'], 'Precio': value['Precio']}
+            return {**self.Q_S_Precio(upper), **same, **self.Q_S_Precio(lower)}
 menu = MENU()
 mod = Mod_Producto()
 allow = False
@@ -156,7 +180,11 @@ try:
                                   f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
                                   f" Precio {producto['Precio']}")
                     case "3":
-                        pass
+                        ordenado = mod.Q_S_Precio()
+                        for codigo, producto in ordenado.items():
+                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                f" Precio {producto['Precio']}")
                     case _:
                         print("La opción seleccionada no es valida")
             case "3":
