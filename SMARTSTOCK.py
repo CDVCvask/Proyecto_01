@@ -282,7 +282,7 @@ try:
             case "3":
                 check = mod.Revisar()
                 if check == -1:
-                    print("No hay ningún dato que mostrar")
+                    print("No hay ningún dato que buscar")
                 else:
                     print("\nBUSQUEDA DE PRODUCTOS")
                     encontrar = mod.Busqueda()
@@ -294,7 +294,7 @@ try:
             case "4":
                 check = mod.Revisar()
                 if check == -1:
-                    print("No hay ningún dato que mostrar")
+                    print("No hay ningún dato que administrar")
                 else:
                     while True:
                         #aun falta la suma de los productos vendidos
