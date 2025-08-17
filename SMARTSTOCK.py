@@ -59,17 +59,19 @@ class Mod_Producto:
             encontrar = "-1"
             return encontrar
     def Q_S_Nombre(self,productos = None):
+        if productos == None:
+            productos = self.productos
         piv = ""
         lower = {}
         same = {}
         upper = {}
-        if len(self.productos) <= 1:
-            return self.productos
+        if len(productos) <= 1:
+            return productos
         else:
-            for key, value in self.productos.items():
+            for key, value in productos.items():
                 piv = value['Nombre']
                 break
-            for key, value in self.productos.items():
+            for key, value in productos.items():
                 if value['Nombre'] < piv:
                     lower[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                   'Stock': value['Stock'], 'Precio': value['Precio']}
