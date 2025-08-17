@@ -105,7 +105,7 @@ class Mod_Producto:
                 if value['Stock'] > piv:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                  'Stock': value['Stock'], 'Precio': value['Precio']}
-            return {**self.Q_S_Stock(lower), **same, **self.Q_S_Stock(upper)}
+            return {**self.Q_S_Stock(upper), **same, **self.Q_S_Stock(lower)}
 menu = MENU()
 mod = Mod_Producto()
 allow = False
