@@ -12,12 +12,15 @@ class MENU:
         print("1.Por nombre")
         print("2.Por stock")
         print("3.Por precio")
+
     def Administracion_Menu(self):
         print("Administracion de productos")
         print("1.Vender productos")
         print("2.Cambiar precios")
         print("3.Eliminar productos")
         print("4.Volver al menú principal")
+
+
 class Producto:
     def __init__(self, codigo,nombre,categoria, stock, precio):
         self.codigo = codigo
@@ -136,6 +139,8 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                  'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Precio(upper), **same, **self.Q_S_Precio(lower)}
+
+
 class Administracion_productos:
     def __init__(self, mod_productos):
         self.mod = mod_productos
@@ -150,14 +155,15 @@ class Administracion_productos:
             print("\nProducto eliminado exitosamente")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
+
     def Vender(self):
         codigo = input("\nIngrese el codigo del producto que desea vender: ")
         if codigo in self.mod.productos:
             print("Producto encontrado exitosamente")
-            cantidad=int(input("\nIngrese la cantidad de productos que desea vender:"))
-            if cantidad <=0:
+            cantidad = int(input("\nIngrese la cantidad de productos que desea vender:"))
+            if cantidad <= 0:
                 print("Cantidad invalida")
-            elif cantidad>self.mod.productos[codigo]['Stock']:
+            elif cantidad > self.mod.productos[codigo]['Stock']:
                 print("No hay suficientes productos para realizar la venta")
             else:
                 self.mod.productos[codigo]['Stock'] -= cantidad
@@ -243,10 +249,10 @@ try:
                     #No pude probar la busqueda al 100 pero yo creo que jala jaja
             case "4":
                 while True:
-                    #aun falta la suma de los productos vendidos
-                    #falta correcion de errores
+                    # aun falta la suma de los productos vendidos
+                    # falta correcion de errores
                     menu.Administracion_Menu()
-                    opcion=input("Elija la opcion que desee: ")
+                    opcion = input("Elija la opcion que desee: ")
                     if opcion in ["1", "2", "3", "4"]:
                         match opcion:
                             case "1":
