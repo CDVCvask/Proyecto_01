@@ -58,13 +58,13 @@ class Mod_Producto:
             print(f"Se han encontrado {cont1} coincidencias en nombre")
             encontrar = "-1"
             return encontrar
-    def Q_S_Nombre(self):
+    def Q_S_Nombre(self,productos = None):
         piv = ""
         lower = {}
         same = {}
         upper = {}
         if len(self.productos) <= 1:
-            return self.productos()
+            return self.productos
         else:
             for key, value in self.productos.items():
                 piv = value['Nombre']
@@ -79,7 +79,7 @@ class Mod_Producto:
                 if value['Nombre'] > piv:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                  'Stock': value['Stock'], 'Precio': value['Precio']}
-            return {**Q_S_Nombre(lower), **same, **Q_S_Nombre(uppper)}
+            return {**self.Q_S_Nombre(lower), **same, **self.Q_S_Nombre(upper)}
 menu = MENU()
 mod = Mod_Producto()
 allow = False
@@ -118,8 +118,11 @@ try:
                 opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
                 match opt1:
                     case "1":
-                        Mod_Producto().Q_S_Nombre()
-                    case "2":
+                        ordenado = mod.Q_S_Nombre()
+                        for codigo,producto in ordenado.items():
+                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                  f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                  f" Precio {producto['Precio']}")
                         pass
                     case "3":
                         pass
