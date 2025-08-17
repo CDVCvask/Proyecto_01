@@ -1,19 +1,19 @@
 class MENU:
     def Menu(self):
-        print("Bienvenido al inventario BingBong")
+        print("\nBienvenido al inventario BingBong")
         print("1.Registrar producto")
-        print("2.Mostrar productos registrados")
+        print("2.Mostrar productos registrados y ordenarlos")
         print("3.Bucar productos registrados")
         print("4.Administración de productos")
         print("5.Salir")
     def Q_S_Menu(self):
-        print("Mostrar productos ordenados(presione X para salir)")
-        print("de que forma desea ordenar los productos? ")
+        print("\nDe que forma desea ordenar los productos? ")
         print("1.Por nombre")
         print("2.Por stock")
         print("3.Por precio")
+        print("4.Volver al menú principal")
     def Administracion_Menu(self):
-        print("Administracion de productos")
+        print("\nAdministracion de productos")
         print("1.Vender productos")
         print("2.Cambiar precios")
         print("3.Eliminar productos")
@@ -31,11 +31,10 @@ class Mod_Producto:
     def Agregar_producto(self, producto):
         self.productos[producto.codigo] = {'Nombre': producto.nombre,'Categoria':producto.categoria,'Stock': producto.stock,
                                            'Precio': producto.precio}
-
     def Mostrar(self):
         for codigo, producto in self.productos.items():
-            print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
-                  f" Stock {producto['Stock']} Precio {producto['Precio']}")
+            print(f"\nCodigo: {codigo}, Nombre:{producto['Nombre']}, Categoría: {producto['Categoria']}")
+            print(f"Stock {producto['Stock']} Precio {producto['Precio']}")
 
     def Busqueda(self):
         encontrar = "-2"
@@ -47,19 +46,23 @@ class Mod_Producto:
             buscar = input("ingrese el código/nombre/categoria del producto que busca: ")
             for codigo, producto in self.productos.items():
                 if buscar == codigo:
+                    print("Producto encontrado")
                     print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
                           f" Stock {producto['Stock']} Precio {producto['Precio']}")
                     encontrar = codigo
                     return encontrar
             for codigo, producto in self.productos.items():
                 if buscar.lower() == producto['Categoria'].lower():
+                    print("Producto encontrado")
                     print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
                           f" Stock {producto['Stock']} Precio {producto['Precio']}")
                     cont = cont + 1
             print(f"Se han encontrado {cont} coincidencias en categoría")
             print(" ")
+
             for codigo, producto in self.productos.items():
                 if buscar.lower() == producto['Nombre'].lower():
+                    print("Producto encontrado")
                     print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
                           f" Stock {producto['Stock']} Precio {producto['Precio']}")
                     cont1 = cont1 + 1
@@ -146,6 +149,7 @@ class Mod_Producto:
 class Administracion_productos:
     def __init__(self, mod_productos):
         self.mod = mod_productos
+        self.ganancias=0
 
     def Eliminar(self):
         print("Eliminar productos en su totalidad")
@@ -193,19 +197,20 @@ allow = False
 try:
     while allow == False:
         menu.Menu()
-        opt = input("Ingrese la opción que desee: ")
+        opt = input("Ingrese la opción que desee (Use unicamente números enteros): ")
         match opt:
             case "1":
                 #Ahora solo voy a hacer el ingreso imaginando que todo está bien y cuando ya funcione
                 # le agregamos lo de que no permita dejar espacios vacios y así
+                print("Registro de productos")
                 cont = 0
-                num = int(input("Cuantos productos desea ingresar? "))
+                num = int(input("\nCuantos productos desea ingresar (Use unicamente números enteros): ? "))
                 if num < 1 or num > 10:
                     print("La cantidad ingresada no es valida")
                 else:
                     for i in range(num):
                         print(" ")
-                        print(f"Ingreso del producto: {i}")
+                        print(f"Ingreso del producto: {i+1}")
                         nombre = input("Ingrese el nombre del producto: ")
                         categoría = input("Ingrese la categoria del producto: ")
                         stock = int(input("Ingrese el stock del producto: "))
@@ -220,41 +225,58 @@ try:
                                 producto = Producto(codigo,nombre,categoría,stock,precio)
                                 mod.Agregar_producto(producto)
                                 cont = cont + 1
+                    print("Producto agregado exitosamente")
+                    print("Voliendo al menú principal...")
+                    input("Preione Enter para continuar")
             case "2":
-                menu.Q_S_Menu()
-                opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
-                match opt1:
-                    case "1":
-                        ordenado = mod.Q_S_Nombre()
-                        for codigo,producto in ordenado.items():
-                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
-                                  f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
-                                  f" Precio {producto['Precio']}")
-                    case "2":
-                        ordenado = mod.Q_S_Stock()
-                        for codigo,producto in ordenado.items():
-                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
-                                  f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
-                                  f" Precio {producto['Precio']}")
-                    case "3":
-                        ordenado = mod.Q_S_Precio()
-                        for codigo, producto in ordenado.items():
-                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
-                                f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
-                                f" Precio {producto['Precio']}")
-                    case _:
-                        print("La opción seleccionada no es valida")
+                while True:
+                    print("Productos disponibles")
+                    menu.Q_S_Menu()
+                    opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
+                    if opt1 in ["1", "2","3","4"]:
+                        match opt1:
+                            case "1":
+                                ordenado = mod.Q_S_Nombre()
+                                for codigo,producto in ordenado.items():
+                                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                          f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                          f" Precio {producto['Precio']}")
+                                input("Preione Enter para continuar")
+                            case "2":
+                                ordenado = mod.Q_S_Stock()
+                                for codigo,producto in ordenado.items():
+                                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                          f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                          f" Precio {producto['Precio']}")
+                                input("Preione Enter para continuar")
+                            case "3":
+                                ordenado = mod.Q_S_Precio()
+                                for codigo, producto in ordenado.items():
+                                    print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                        f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                        f" Precio {producto['Precio']}")
+                                input("Preione Enter para continuar")
+                            case "4":
+                                print("Voliendo al menú principal...")
+                                input("Preione Enter para continuar")
+                                break
+                    else:
+                        print("Opcion invalida")
             case "3":
+                print("Busqueda de productos")
                 encontrar = mod.Busqueda()
                 if encontrar == "-2":
                     print("No hay datos para buscar")
                     #No pude probar la busqueda al 100 pero yo creo que jala jaja
+                print("Voliendo al menú principal...")
+                input("Preione Enter para continuar")
             case "4":
                 while True:
                     #aun falta la suma de los productos vendidos
                     #falta correcion de errores
+                    mod.Mostrar()
                     menu.Administracion_Menu()
-                    opcion=input("Elija la opcion que desee: ")
+                    opcion=input("Elija la opcion que desee (Use unicamente números enteros): ")
                     if opcion in ["1", "2", "3", "4"]:
                         match opcion:
                             case "1":
@@ -264,7 +286,11 @@ try:
                             case "3":
                                 admin.Eliminar()
                             case "4":
+                                print("Voliendo al menú principal...")
+                                input("Preione Enter para continuar")
                                 break
+                    else:
+                        print("Opcion invalida")
             case "5":
                 print("Saliendo del Menú")
                 allow = True
