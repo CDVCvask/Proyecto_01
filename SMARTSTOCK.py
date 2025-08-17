@@ -149,7 +149,12 @@ try:
                             print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
                                   f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
                                   f" Precio {producto['Precio']}")
-                        pass
+                    case "2":
+                        ordenado = mod.Q_S_Stock()
+                        for codigo,producto in ordenado.items():
+                            print(f"Código: {codigo}, Nombre: {producto['Nombre']} "
+                                  f"Categoría: {producto['Categoria']}"  f" Stock {producto['Stock']}"
+                                  f" Precio {producto['Precio']}")
                     case "3":
                         pass
                     case _:
