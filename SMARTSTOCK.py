@@ -41,7 +41,7 @@ class Mod_Producto:
         cont = 0
         cont1 = 0
         if len(self.productos) < 1:
-            return "-1"
+            return "-2"
         else:
             buscar = input("ingrese el código/nombre/categoria del producto que busca: ")
             for codigo, producto in self.productos.items():
