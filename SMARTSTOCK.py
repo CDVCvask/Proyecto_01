@@ -82,6 +82,30 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                  'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Nombre(lower), **same, **self.Q_S_Nombre(upper)}
+    def Q_S_Stock(self,productos = None):
+        if productos == None:
+            productos = self.productos
+        piv = ""
+        lower = {}
+        same = {}
+        upper = {}
+        if len(productos) <= 1:
+            return productos
+        else:
+            for key, value in productos.items():
+                piv = value['Stock']
+                break
+            for key, value in productos.items():
+                if value['Stock'] < piv:
+                    lower[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Stock'] == piv:
+                    same[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Stock'] > piv:
+                    upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                 'Stock': value['Stock'], 'Precio': value['Precio']}
+            return {**self.Q_S_Stock(lower), **same, **self.Q_S_Stock(upper)}
 menu = MENU()
 mod = Mod_Producto()
 allow = False
