@@ -17,7 +17,8 @@ class MENU:
         print("1.Vender productos")
         print("2.Cambiar precios")
         print("3.Eliminar productos")
-        print("4.Volver al menú principal")
+        print("4.Mostrar ganancia de ventas")
+        print("5.Volver al menú principal")
 class Producto:
     def __init__(self, codigo,nombre,categoria, stock, precio):
         self.codigo = codigo
@@ -172,8 +173,14 @@ class Administracion_productos:
                 print("No hay suficientes productos para realizar la venta")
             else:
                 self.mod.productos[codigo]['Stock'] -= cantidad
+
+                precio_unitario = self.mod.productos[codigo]['Precio']
+                total_venta = cantidad * precio_unitario
+                self.ganancias += total_venta
                 print("Venta realizada exitosamente")
                 print(f"Nueva cantidad de productos disponibles: {self.mod.productos[codigo]['Stock']}")
+                print(f"Ganancia de esta venta: {total_venta}")
+                print(f"Ganancia acumulada: {self.ganancias}")
         else:
             print("El codigo ingresado no pertenece a ningún producto")
     def CambiarPrecios(self):
@@ -277,7 +284,7 @@ try:
                     mod.Mostrar()
                     menu.Administracion_Menu()
                     opcion=input("Elija la opcion que desee (Use unicamente números enteros): ")
-                    if opcion in ["1", "2", "3", "4"]:
+                    if opcion in ["1", "2", "3", "4","5"]:
                         match opcion:
                             case "1":
                                 admin.Vender()
@@ -286,6 +293,8 @@ try:
                             case "3":
                                 admin.Eliminar()
                             case "4":
+                               print(f"Ganancias acumuladas: {admin.ganancias}")
+                            case 5:
                                 print("Voliendo al menú principal...")
                                 input("Preione Enter para continuar")
                                 break
