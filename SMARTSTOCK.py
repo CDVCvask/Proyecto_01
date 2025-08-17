@@ -70,6 +70,16 @@ class Mod_Producto:
                 piv = value['Nombre']
                 break
             for key, value in self.productos.items():
+                if value['Nombre'] < piv:
+                    lower[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Nombre'] == piv:
+                    same[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                  'Stock': value['Stock'], 'Precio': value['Precio']}
+                if value['Nombre'] > piv:
+                    upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
+                                 'Stock': value['Stock'], 'Precio': value['Precio']}
+            return {**Q_S_Nombre(lower), **same, **Q_S_Nombre(uppper)}
 menu = MENU()
 mod = Mod_Producto()
 allow = False
@@ -108,7 +118,7 @@ try:
                 opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
                 match opt1:
                     case "1":
-                        pass
+                        Mod_Producto().Q_S_Nombre()
                     case "2":
                         pass
                     case "3":
