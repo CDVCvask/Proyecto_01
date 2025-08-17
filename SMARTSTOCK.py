@@ -208,8 +208,8 @@ mod = Mod_Producto()
 admin = Administracion_productos(mod)
 allow = False
 cont = 0
-try:
-    while allow == False:
+while allow == False:
+    try:
         menu.Menu()
         opt = input("Ingrese la opción que desee (Use unicamente números enteros): ")
         match opt:
@@ -325,6 +325,6 @@ try:
                 allow = True
             case _:
                 print("La opción seleccionada no es valida")
-except ValueError:
-    print("Tipo de dato incorrecto")
+    except ValueError:
+        print("El tipo de dato ingresado no es valido")
     #El try lo puse nomás para que se guíe jaja no está al 100
