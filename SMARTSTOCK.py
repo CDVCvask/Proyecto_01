@@ -68,6 +68,8 @@ class Mod_Producto:
         else:
             for key, value in self.productos.items():
                 piv = value['Nombre']
+                break
+            for key, value in self.productos.items():
 menu = MENU()
 mod = Mod_Producto()
 allow = False
