@@ -203,6 +203,7 @@ menu = MENU()
 mod = Mod_Producto()
 admin = Administracion_productos(mod)
 allow = False
+cont = 0
 try:
     while allow == False:
         menu.Menu()
@@ -212,7 +213,6 @@ try:
                 #Ahora solo voy a hacer el ingreso imaginando que todo está bien y cuando ya funcione
                 # le agregamos lo de que no permita dejar espacios vacios y así
                 print("\nREGISTRO DE PRODUCTOS")
-                cont = 0
                 num = int(input("Cuantos productos desea ingresar (Use unicamente números enteros): ? "))
                 if num < 1 or num > 10:
                     print("La cantidad ingresada no es valida")
