@@ -58,6 +58,16 @@ class Mod_Producto:
             print(f"Se han encontrado {cont1} coincidencias en nombre")
             encontrar = "-1"
             return encontrar
+    def Q_S_Nombre(self):
+        piv = ""
+        lower = {}
+        same = {}
+        upper = {}
+        if len(self.productos) <= 1:
+            return self.productos()
+        else:
+            for key, value in self.productos.items():
+                piv = value['Nombre']
 menu = MENU()
 mod = Mod_Producto()
 allow = False
@@ -92,7 +102,17 @@ try:
                                 mod.Agregar_producto(producto)
                                 cont = cont + 1
             case "2":
-                mod.Mostrar()
+                menu.Q_S_Menu()
+                opt1 = input("Ingrese la forma en que desea ordenar los productos: ")
+                match opt1:
+                    case "1":
+                        pass
+                    case "2":
+                        pass
+                    case "3":
+                        pass
+                    case _:
+                        print("La opción seleccionada no es valida")
             case "3":
                 encontrar = mod.Busqueda()
                 if encontrar == "-2":
