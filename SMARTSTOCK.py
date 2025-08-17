@@ -29,11 +29,14 @@ class Mod_Producto:
     def __init__(self):
         self.productos = {}
     def Agregar_producto(self, producto):
-        self.productos[producto.codigo] = {'Nombre': producto.nombre,'Categoria':producto.categoria,'Stock':producto.stock,'Precio':producto.precio}
+        self.productos[producto.codigo] = {'Nombre': producto.nombre,'Categoria':producto.categoria,'Stock': producto.stock,
+                                           'Precio': producto.precio}
+
     def Mostrar(self):
         for codigo, producto in self.productos.items():
             print(f"Código: {codigo}, Nombre: {producto['Nombre']} Categoría: {producto['Categoria']}"
-                    f" Stock {producto['Stock']} Precio {producto['Precio']}")
+                  f" Stock {producto['Stock']} Precio {producto['Precio']}")
+
     def Busqueda(self):
         encontrar = "-2"
         cont = 0
@@ -63,7 +66,8 @@ class Mod_Producto:
             print(f"Se han encontrado {cont1} coincidencias en nombre")
             encontrar = "-1"
             return encontrar
-    def Q_S_Nombre(self,productos = None):
+
+    def Q_S_Nombre(self, productos=None):
         if productos == None:
             productos = self.productos
         piv = ""
@@ -87,7 +91,8 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                   'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Nombre(lower), **same, **self.Q_S_Nombre(upper)}
-    def Q_S_Stock(self,productos = None):
+
+    def Q_S_Stock(self, productos=None):
         if productos == None:
             productos = self.productos
         piv = ""
@@ -111,7 +116,8 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                   'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Stock(upper), **same, **self.Q_S_Stock(lower)}
-    def Q_S_Precio(self,productos = None):
+
+    def Q_S_Precio(self, productos=None):
         if productos == None:
             productos = self.productos
         piv = ""
@@ -135,6 +141,8 @@ class Mod_Producto:
                     upper[key] = {'Nombre': value['Nombre'], 'Categoria': value['Categoria'],
                                   'Stock': value['Stock'], 'Precio': value['Precio']}
             return {**self.Q_S_Precio(upper), **same, **self.Q_S_Precio(lower)}
+
+
 class Administracion_productos:
     def __init__(self, mod_productos):
         self.mod = mod_productos
