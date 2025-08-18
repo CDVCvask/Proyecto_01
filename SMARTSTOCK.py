@@ -222,29 +222,31 @@ while allow == False:
                     print("La cantidad ingresada no es valida")
                 else:
                     for i in range(num):
-                        print(" ")
-                        print(f"Ingreso del producto: {i+1}")
-                        nombre = input("Ingrese el nombre del producto: ")
-                        if nombre == "":
-                            print("No puede dejar este espacio vacio")
-                        else:
-                            categoría = input("Ingrese la categoria del producto: ")
-                            if categoría == "":
+                        while 0 != 1:
+                            print(" ")
+                            print(f"Ingreso del producto: {i+1}")
+                            nombre = input("Ingrese el nombre del producto: ")
+                            if nombre == "":
                                 print("No puede dejar este espacio vacio")
                             else:
-                                stock = int(input("Ingrese el stock del producto: "))
-                                if stock < 1:
-                                    print("Cantidad invalida")
+                                categoría = input("Ingrese la categoria del producto: ")
+                                if categoría == "":
+                                    print("No puede dejar este espacio vacio")
                                 else:
-                                    precio = int(input("Ingrese el precio del producto: "))
-                                    if precio <= 0:
-                                        print("Valor invalido")
+                                    stock = int(input("Ingrese el stock del producto: "))
+                                    if stock < 1:
+                                        print("Cantidad invalida")
                                     else:
-                                        codigo = f"P{cont}"
-                                        producto = Producto(codigo,nombre,categoría,stock,precio)
-                                        mod.Agregar_producto(producto)
-                                        cont = cont + 1
-                                        print("Producto agregado exitosamente")
+                                        precio = int(input("Ingrese el precio del producto: "))
+                                        if precio <= 0:
+                                            print("Valor invalido")
+                                        else:
+                                            codigo = f"P{cont}"
+                                            producto = Producto(codigo,nombre,categoría,stock,precio)
+                                            mod.Agregar_producto(producto)
+                                            cont = cont + 1
+                                            print("Producto agregado exitosamente")
+                                            break
                     print("Voliendo al menú principal...")
                     input("Preione Enter para continuar")
             case "2":
