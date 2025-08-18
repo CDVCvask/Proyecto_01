@@ -225,22 +225,28 @@ while allow == False:
                         print(" ")
                         print(f"Ingreso del producto: {i+1}")
                         nombre = input("Ingrese el nombre del producto: ")
-                        categoría = input("Ingrese la categoria del producto: ")
-                        stock = int(input("Ingrese el stock del producto: "))
-                        if stock < 1:
-                            print("Cantidad invalida")
+                        if nombre == "":
+                            print("No puede dejar este espacio vacio")
                         else:
-                            precio = int(input("Ingrese el precio del producto: "))
-                            if precio <= 0:
-                                print("Valor invalido")
+                            categoría = input("Ingrese la categoria del producto: ")
+                            if categoria == "":
+                                print("No puede dejar este espacio vacio")
                             else:
-                                codigo = f"P{cont}"
-                                producto = Producto(codigo,nombre,categoría,stock,precio)
-                                mod.Agregar_producto(producto)
-                                cont = cont + 1
-                    print("Producto agregado exitosamente")
-                    print("Voliendo al menú principal...")
-                    input("Preione Enter para continuar")
+                                stock = int(input("Ingrese el stock del producto: "))
+                                if stock < 1:
+                                    print("Cantidad invalida")
+                                else:
+                                    precio = int(input("Ingrese el precio del producto: "))
+                                    if precio <= 0:
+                                        print("Valor invalido")
+                                    else:
+                                        codigo = f"P{cont}"
+                                        producto = Producto(codigo,nombre,categoría,stock,precio)
+                                        mod.Agregar_producto(producto)
+                                        cont = cont + 1
+                                        print("Producto agregado exitosamente")
+                                        print("Voliendo al menú principal...")
+                                        input("Preione Enter para continuar")
             case "2":
                 check = mod.Revisar()
                 if check == -1:
