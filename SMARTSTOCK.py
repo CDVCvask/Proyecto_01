@@ -229,7 +229,7 @@ while allow == False:
                             print("No puede dejar este espacio vacio")
                         else:
                             categoría = input("Ingrese la categoria del producto: ")
-                            if categoria == "":
+                            if categoría == "":
                                 print("No puede dejar este espacio vacio")
                             else:
                                 stock = int(input("Ingrese el stock del producto: "))
@@ -245,8 +245,8 @@ while allow == False:
                                         mod.Agregar_producto(producto)
                                         cont = cont + 1
                                         print("Producto agregado exitosamente")
-                                        print("Voliendo al menú principal...")
-                                        input("Preione Enter para continuar")
+                    print("Voliendo al menú principal...")
+                    input("Preione Enter para continuar")
             case "2":
                 check = mod.Revisar()
                 if check == -1:
